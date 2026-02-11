@@ -164,28 +164,10 @@ def click(event):
                 scvalue.set(scvalue.get()+text)
 
         elif text == "=":
+
             text1 = scvalue.get()
 
             text1 = text1.replace("π", "math.pi")
-            if v.get()==1:
-                text1 = text1.replace("sin", "math.sin")
-                text1 = text1.replace("cos", "math.cos")
-                text1 = text1.replace("tan", "math.tan")
-            else:
-                if "sin" in text1:
-                    text1 = text1.replace("sin", "math.sin(math.radians")
-                    text1 = text1.replace(")","))")
-
-                if "cos" in text1:
-                    text1 = text1.replace("cos","math.cos(math.radians")
-                    text1 = text1.replace(")", "))")
-
-                if "tan" in text1:
-                     text1 = text1.replace("tan", "math.tan(math.radians")
-                     text1 = text1.replace(")", "))")
-
-
-
             text1 = text1.replace("log", "math.log10")
             text1 = text1.replace("ln", "math.log")
             text1 = text1.replace("²", "**2")
@@ -193,23 +175,17 @@ def click(event):
             text1 = text1.replace("^", "**")
             text1 = text1.replace("e","math.e")
 
-        
 
-            text1 = re.sub(
-                r"sin\((\d+)\)",
-                r"math.sin(math.radians(\1))",
-                text1
-            )
-            text1 = re.sub(
-                r"cos\((\d+)\)",
-                r"math.cos(math.radians(\1))",
-                text1
-            )
-            text1 = re.sub(
-                r"tan\((\d+)\)",
-                r"math.tan(math.radians(\1))",
-                text1
-            )
+            if v.get() == 2:
+                text1 = re.sub(r'sin\((.*?)\)', r'math.sin(math.radians(\1))', text1)
+                text1 = re.sub(r'cos\((.*?)\)', r'math.cos(math.radians(\1))', text1)
+                text1 = re.sub(r'tan\((.*?)\)', r'math.tan(math.radians(\1))', text1)
+
+
+            else:
+                text1 = re.sub(r'sin\((.*?)\)', r'math.sin(\1)', text1)
+                text1 = re.sub(r'cos\((.*?)\)', r'math.cos(\1)', text1)
+                text1 = re.sub(r'tan\((.*?)\)', r'math.tan(\1)', text1)
 
 
             while "!" in text1:
@@ -282,5 +258,4 @@ for i,row in enumerate(buttons):
             activebackground="lightgrey",activeforeground="black")
         b.grid(row=i+1, column=j)
         b.bind("<Button-1>", click)
-
 root.mainloop()
