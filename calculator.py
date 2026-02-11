@@ -193,7 +193,7 @@ def click(event):
             text1 = text1.replace("^", "**")
             text1 = text1.replace("e","math.e")
 
-            text1 = "sin(30)+sin(90)+cos(90)"
+        
 
             text1 = re.sub(
                 r"sin\((\d+)\)",
@@ -282,4 +282,5 @@ for i,row in enumerate(buttons):
             activebackground="lightgrey",activeforeground="black")
         b.grid(row=i+1, column=j)
         b.bind("<Button-1>", click)
+
 root.mainloop()
