@@ -17,12 +17,6 @@ memory=0
 entry=Entry(root,textvariable=scvalue,width=20,font='Arial 28 bold', fg="black",justify="right")
 entry.grid(row=0, column=0, columnspan=5, padx=20, pady=25, ipady=15)
 
-def sin_deg(text1):
-    text1 = text1.replace("sin", "math.sin(math.radians")
-    text1 = text1.replace(")","))")
-    return eval(text1)
-
-
 def click(event):
     global ans,memory
     try:
@@ -259,3 +253,4 @@ for i,row in enumerate(buttons):
         b.grid(row=i+1, column=j)
         b.bind("<Button-1>", click)
 root.mainloop()
+
